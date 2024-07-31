@@ -1,42 +1,107 @@
-import { USERS_PATH } from "../constants/consts";
-import { ApiUser } from "../models/apiUserModel";
 import { FullUser } from "../models/fullUserModel";
-import User from "../models/mongoUserModel";
-import JsonHandler from "./jsonHandler";
-import RequestHandler from "./requestHandler";
+import ApiUserService from "./apiUserService";
+import JsonUserService from "./jsonUserService";
+import MongoUserService from "./mongoUserService";
 
 class UserService {
-  static async getAllUsers(): Promise<FullUser[] | undefined> {
-    const mongoUsers = (await User.find()) || [];
-    const fullUsers: FullUser[] = [];
-    for (const mongoUser of mongoUsers) {
-      const apiUser = await RequestHandler.sendRequest<ApiUser>(
-        `${USERS_PATH}/${mongoUser.externalId}`,
-        "GET"
-      );
-      const jsonUser = await JsonHandler.fetchUserDataFromJson(
-        mongoUser.externalId
-      );
-
-      if (jsonUser && apiUser) {
-        let fullUser: FullUser = {
-          id: mongoUser.externalId,
-          phone: jsonUser.phone,
-          name: apiUser.name,
-          username: apiUser.username,
-          email: apiUser.email,
-          address: {
-            city: mongoUser.city,
-            country: mongoUser.country,
-          },
-          website: apiUser.website,
-          company: apiUser.company,
-        };
-        fullUsers.push(fullUser);
+  static async getAllUsers(): Promise<FullUser[] | { error: string }> {
+    try {
+      const mongoUsers = await MongoUserService.getAllUsers();
+      if (!mongoUsers || mongoUsers.length === 0) {
+        return { error: "No users found in MongoDB" };
       }
+
+      const fullUsers: FullUser[] = [];
+      for (const mongoUser of mongoUsers) {
+        try {
+          const apiUser = await ApiUserService.getUserById(
+            mongoUser.externalId
+          );
+          const jsonUser = await JsonUserService.getUserById(
+            mongoUser.externalId
+          );
+
+          if (!jsonUser) {
+            return { error: "No user found in json" };
+          } else if (!apiUser) {
+            return { error: "No user found in api" };
+          } else {
+            const fullUser: FullUser = {
+              id: mongoUser.externalId,
+              phone: jsonUser.phone,
+              name: apiUser.name,
+              username: apiUser.username,
+              email: apiUser.email,
+              address: {
+                city: mongoUser.city,
+                country: mongoUser.country,
+              },
+              website: apiUser.website,
+              company: apiUser.company,
+            };
+            fullUsers.push(fullUser);
+          }
+        } catch (error) {
+          return {
+            error: `Error fetching data for externalId ${mongoUser.externalId}:`,
+          };
+        }
+      }
+
+      return fullUsers;
+    } catch (error) {
+      console.error("Error in getAllUsers method:", error);
+      return { error: "Internal server error" };
     }
-    return fullUsers;
   }
+
+  static async getUserById(
+    externalId: number
+  ): Promise<FullUser | { error: string }> {
+    try {
+      const mongoUser = await MongoUserService.getUserById(externalId);
+      if (!mongoUser) {
+        return {
+          error: `User with externalId ${externalId} not found in MongoDB`,
+        };
+      }
+
+      const apiUser = await ApiUserService.getUserById(externalId);
+      if (!apiUser) {
+        return { error: `User with externalId ${externalId} not found in API` };
+      }
+
+      const jsonUser = await JsonUserService.getUserById(externalId);
+      if (!jsonUser) {
+        return {
+          error: `User with externalId ${externalId} not found in JSON file`,
+        };
+      }
+
+      const fullUser: FullUser = {
+        id: mongoUser.externalId,
+        phone: jsonUser.phone,
+        name: apiUser.name,
+        username: apiUser.username,
+        email: apiUser.email,
+        address: {
+          city: mongoUser.city,
+          country: mongoUser.country,
+        },
+        website: apiUser.website,
+        company: apiUser.company,
+      };
+
+      return fullUser;
+    } catch (error) {
+      console.error("Error in getById method:", error);
+      return { error: "Internal server error" };
+    }
+  }
+
+  static isUserValid = (user: any) => {
+    return user && user.externalId && user.city && user.country;
+  };
 }
 
 export default UserService;
