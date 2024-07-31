@@ -50,6 +50,17 @@ class MongoUserService {
       return null;
     }
   }
+
+  static isUserValid = (user: any) => {
+    return (
+      user &&
+      user.externalId &&
+      user.city &&
+      user.country &&
+      user.email &&
+      user.password
+    );
+  };
 }
 
 export default MongoUserService;

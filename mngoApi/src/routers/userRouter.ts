@@ -27,7 +27,7 @@ userRouter.get("/:id", async (req: Request, res: Response) => {
 
 userRouter.post("/add", async (req: Request, res: Response) => {
   const userToAdd: MongoUser = req.body;
-  if (!UserService.isUserValid(userToAdd)) {
+  if (!MongoUserService.isUserValid(userToAdd)) {
     return res.status(400).json({ error: "Invalid input data" });
   }
 
@@ -36,7 +36,7 @@ userRouter.post("/add", async (req: Request, res: Response) => {
     if (newUser) {
       res.status(201).json("User created: " + newUser);
     } else {
-      res.status(500).json({ error: "Failed to add user" });
+      res.status(500).json({ error: "Failed to add user - email is uniqe field, check it" });
     }
   } catch (error) {
     res.status(500).json({ error: "An error occurred while adding the user" });
@@ -47,9 +47,9 @@ userRouter.put("/update/:id", async (req: Request, res: Response) => {
   const userId = req.params.id;
   const userToUpdate: MongoUser = req.body;
 
-  if (!UserService.isUserValid(userToUpdate)) {
+  if (!MongoUserService.isUserValid(userToUpdate)) {
     return res.status(400).json({
-      error: "At least one field (name, email, age) is required to update",
+      error: "At least one field is required to update",
     });
   }
 
@@ -82,7 +82,5 @@ userRouter.delete("/delete/:id", async (req: Request, res: Response) => {
       .json({ error: "An error occurred while deleting the user" });
   }
 });
-
-
 
 export default userRouter;

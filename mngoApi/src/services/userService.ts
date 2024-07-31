@@ -99,9 +99,7 @@ class UserService {
     }
   }
 
-  static isUserValid = (user: any) => {
-    return user && user.externalId && user.city && user.country;
-  };
+ 
 }
 
 export default UserService;
