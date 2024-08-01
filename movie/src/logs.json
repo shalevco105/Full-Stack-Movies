@@ -1,0 +1,47 @@
+[
+  {
+    "userId": "HsIDZJjhmYzF6pg03ZepF7X5ylLPGnJC",
+    "actions": [
+      {
+        "numOfActionLeft": 10,
+        "actionExecuted": "created",
+        "date": "2024-08-01T13:12:30.321Z"
+      },
+      {
+        "numOfActionLeft": 9,
+        "actionExecuted": "/user/all",
+        "date": "2024-08-01T13:12:34.181Z"
+      },
+      {
+        "numOfActionLeft": 8,
+        "actionExecuted": "/user/all",
+        "date": "2024-08-01T13:12:35.476Z"
+      },
+      {
+        "numOfActionLeft": 7,
+        "actionExecuted": "/user/all",
+        "date": "2024-08-01T13:12:36.624Z"
+      },
+      {
+        "numOfActionLeft": 6,
+        "actionExecuted": "/user/all",
+        "date": "2024-08-01T13:12:38.973Z"
+      },
+      {
+        "numOfActionLeft": 5,
+        "actionExecuted": "/user/all",
+        "date": "2024-08-01T13:12:39.977Z"
+      },
+      {
+        "numOfActionLeft": 4,
+        "actionExecuted": "/user/all",
+        "date": "2024-08-01T13:12:40.754Z"
+      },
+      {
+        "numOfActionLeft": 3,
+        "actionExecuted": "/user/all",
+        "date": "2024-08-01T13:12:41.708Z"
+      }
+    ]
+  }
+]

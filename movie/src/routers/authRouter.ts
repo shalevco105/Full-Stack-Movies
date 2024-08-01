@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import User from "../models/mongoUserModel";
+import User from "../models/userModel";
 import { generateToken } from "../jwtAuth/jwtUtil";
 
 const authRouter = Router();
@@ -18,13 +18,12 @@ authRouter.post("/login", async (req: Request, res: Response) => {
       return res.status(401).json({ error: "User not found - Invalid email" });
     }
 
-    
     if (!user.comparePassword(password)) {
       return res.status(401).json({ error: "Invalid password" });
     }
 
     const token = generateToken(user._id.toString());
-    console.log("Generated Token:", token); 
+    console.log("Generated Token:", token);
     res.json({ token });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
