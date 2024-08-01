@@ -2,8 +2,10 @@ import { Router, Request, Response } from "express";
 import UserService from "../services/userService";
 import { MongoUser } from "../models/mongoUserModel";
 import MongoUserService from "../services/mongoUserService";
+import { authenticateToken } from "../jwtAuth/authMiddeware";
 
 const userRouter = Router();
+userRouter.use(authenticateToken);
 
 userRouter.get("/all", async (req: Request, res: Response) => {
   res.json((await UserService.getAllUsers()) || "Users not found");
@@ -36,7 +38,9 @@ userRouter.post("/add", async (req: Request, res: Response) => {
     if (newUser) {
       res.status(201).json("User created: " + newUser);
     } else {
-      res.status(500).json({ error: "Failed to add user - email is uniqe field, check it" });
+      res
+        .status(500)
+        .json({ error: "Failed to add user - email is uniqe field, check it" });
     }
   } catch (error) {
     res.status(500).json({ error: "An error occurred while adding the user" });

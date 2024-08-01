@@ -1,8 +1,8 @@
 import express from "express";
 import authRouter from "./src/routers/authRouter";
 import userRouter from "./src/routers/userRouter";
+import sessionCookieRouter from "./src/routers/sessionCookieRouter";
 import connectDB from "./src/dbConnect";
-import { authenticateToken } from "./src/jwtAuth/authMiddeware";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -12,8 +12,8 @@ connectDB();
 
 app.use(express.json());
 
+app.use("/session", sessionCookieRouter);
 app.use("/auth", authRouter);
-// app.use(authenticateToken);
 app.use("/user", userRouter);
 
 app.listen(3000);
