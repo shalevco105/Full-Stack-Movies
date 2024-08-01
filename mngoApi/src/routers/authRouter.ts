@@ -18,7 +18,7 @@ authRouter.post("/login", async (req: Request, res: Response) => {
       return res.status(401).json({ error: "User not found - Invalid email" });
     }
 
-    if (user.password !== password) {
+    if (user.comparePassword(password) !== password) {
       return res.status(401).json({ error: "Invalid password" });
     }
 

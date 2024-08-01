@@ -13,7 +13,7 @@ connectDB();
 app.use(express.json());
 
 app.use("/auth", authRouter);
-app.use(authenticateToken);
+// app.use(authenticateToken);
 app.use("/user", userRouter);
 
 app.listen(3000);
