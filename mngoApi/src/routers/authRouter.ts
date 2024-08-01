@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import User from "../models/mongoUserModel";
-import { generateToken } from "../jwt/jwtUtil";
+import { generateToken } from "../jwtAuth/jwtUtil";
 
 const authRouter = Router();
 
@@ -14,8 +14,12 @@ authRouter.post("/login", async (req: Request, res: Response) => {
   try {
     const user = await User.findOne({ email });
 
-    if (!user || user.password !== password) {
-      return res.status(401).json({ error: "Invalid email or password" });
+    if (!user) {
+      return res.status(401).json({ error: "User not found - Invalid email" });
+    }
+
+    if (user.password !== password) {
+      return res.status(401).json({ error: "Invalid password" });
     }
 
     const token = generateToken(user._id.toString());

@@ -8,15 +8,18 @@ export const authenticateToken = (
 ) => {
   const token = req.headers["authorization"];
 
-  if (!token) return res.status(401).json({ error: "Access denied" });
-
+  if (!token) {
+    console.log("No token provided");
+    return res.status(401).json({ error: "Access denied" });
+  }
   try {
-    const user = verifyToken(token);
-    if (!user || typeof user !== "object" || !user.id) {
+    const userAuthData = verifyToken(token);
+    console.log("User authenticated:", userAuthData);
+    if (!userAuthData || typeof userAuthData !== "object" || !userAuthData.id) {
       return res.status(403).json({ error: "Invalid token" });
     }
 
-    (req as any).user = user; 
+    (req as any).userAuthData = userAuthData; 
 
     next();
   } catch (error) {
