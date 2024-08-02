@@ -1,13 +1,18 @@
 import { Request, Response } from "express";
 import * as userService from '../services/userService';
 import { UserModel } from "../models/userModel";
+import { HTTP_STATUS } from "../constants/httpContants";
+import { ERROR_MESSAGES } from "../constants/errorMessages";
 
 export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
   try {
     const movies: UserModel[] = await userService.getAllMovies();
-    res.status(200).json(movies);
+    res.status(HTTP_STATUS.OK).json(movies);
   } catch (error) {
-    res.status(500).json({ error: "An error occurred while getting the movies" });
+    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+      error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR +
+        " An error occurred while getting the movies"
+    });
   }
 };
 
@@ -18,12 +23,12 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
     const user = await userService.getUserById(id);
 
     if (!user) {
-      res.status(404).json({ error: `User with externalId ${id} not found` });
+      res.status(HTTP_STATUS.NOT_FOUND).json({ error: `User with externalId ${id} not found` });
     } else {
       res.json(user);
     }
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
   }
 }
 
@@ -32,14 +37,17 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
   try {
     const newUser = await userService.createUser(userToAdd);
     if (newUser) {
-      res.status(201).json("User created: " + newUser);
+      res.status(HTTP_STATUS.CREATED).json("User created: " + newUser);
     } else {
       res
-        .status(500)
+        .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
         .json({ error: "Failed to add user - email is uniqe field, check it" });
     }
   } catch (error) {
-    res.status(500).json({ error: "An error occurred while adding the user" });
+    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+      error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR +
+        " An error occurred while adding the user"
+    });
   }
 }
 
@@ -52,12 +60,12 @@ export const updateUser = async (req: Request, res: Response): Promise<void> => 
     if (updatedUser) {
       res.json("User updated: " + updatedUser);
     } else {
-      res.status(404).json({ message: "User not found" });
+      res.status(HTTP_STATUS.NOT_FOUND).json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
     }
   } catch (error) {
     res
-      .status(500)
-      .json({ error: "An error occurred while updating the user" });
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR + " An error occurred while updating the user" });
   }
 }
 
@@ -68,11 +76,11 @@ export const deletedUser = async (req: Request, res: Response): Promise<void> =>
     if (deletedUser) {
       res.json({ message: "User successfully deleted: ", deletedUser });
     } else {
-      res.status(404).json({ message: "User not found" });
+      res.status(HTTP_STATUS.NOT_FOUND).json({ message: ERROR_MESSAGES.USER_NOT_FOUND });
     }
   } catch (error) {
     res
-      .status(500)
-      .json({ error: "An error occurred while deleting the user" });
+      .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+      .json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR + " An error occurred while deleting the user" });
   }
 }

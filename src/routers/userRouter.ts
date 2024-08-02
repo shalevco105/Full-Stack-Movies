@@ -4,12 +4,11 @@ import { authenticateToken } from "../jwtAuth/authMiddeware";
 
 const userRouter = Router();
 
-// userRouter.use(authenticateToken);
+userRouter.use(authenticateToken);
 
 userRouter.get('/data', userController.getAllUsers);
 userRouter.get("/:id", userController.getUserById);
-userRouter.get("/create", userController.createUser);
-userRouter.get("/update/:id", userController.updateUser);
-userRouter.get("/delete/:id", userController.deletedUser);
+userRouter.put("/update/:id", userController.updateUser);
+userRouter.delete("/delete/:id", userController.deletedUser);
 
 export default userRouter;

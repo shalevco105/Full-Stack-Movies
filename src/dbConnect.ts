@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const MONGO_PATH = process.env.MONGO_PATH || "localhost:27017";
+const MONGO_PATH = process.env.MONGO_PATH || "0.0.0.0:27017";
 
 const connectDB = async () => {
   try {

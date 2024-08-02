@@ -1,8 +1,7 @@
 import express from "express";
-import authRouter from "./src/routers/authRouter";
 import userRouter from "./src/routers/userRouter";
 import movieRouter from "./src/routers/movieRouter";
-import { trackRequestCount } from "./src/sessionMiddleware";
+import { trackRequestCount } from "./src/middlewares/sessionMiddleware";
 import connectDB from "./src/dbConnect";
 import dotenv from "dotenv";
 import session from "express-session";

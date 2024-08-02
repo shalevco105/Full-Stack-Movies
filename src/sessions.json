@@ -43,5 +43,80 @@
         "date": "2024-08-01T13:12:41.708Z"
       }
     ]
+  },
+  {
+    "sessionId": "OWUnjKZi4mcI22a7krlL_g0OWfEqtEpg",
+    "actions": [
+      {
+        "numOfActionLeft": 9,
+        "actionExecuted": "session created",
+        "date": "2024-08-02T14:56:35.882Z"
+      },
+      {
+        "numOfActionLeft": 8,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:56:43.408Z"
+      },
+      {
+        "numOfActionLeft": 7,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:57:44.419Z"
+      },
+      {
+        "numOfActionLeft": 6,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:57:45.203Z"
+      },
+      {
+        "numOfActionLeft": 5,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:57:45.923Z"
+      },
+      {
+        "numOfActionLeft": 4,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:57:46.710Z"
+      },
+      {
+        "numOfActionLeft": 3,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:57:47.519Z"
+      },
+      {
+        "numOfActionLeft": 2,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:57:50.719Z"
+      },
+      {
+        "numOfActionLeft": 1,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:57:51.693Z"
+      },
+      {
+        "numOfActionLeft": 0,
+        "actionExecuted": "/movie/data",
+        "date": "2024-08-02T14:57:54.663Z"
+      }
+    ]
+  },
+  {
+    "sessionId": "IkUsMVlFJ0NeD9QsaAZBB4NJUt0zSIGS",
+    "actions": [
+      {
+        "numOfActionLeft": 9,
+        "actionExecuted": "session created",
+        "date": "2024-08-02T15:24:10.048Z"
+      }
+    ]
+  },
+  {
+    "sessionId": "UQoVZwBMTqv2frXwq_uQgpH-nhMFnn8V",
+    "actions": [
+      {
+        "numOfActionLeft": 9,
+        "actionExecuted": "session created",
+        "date": "2024-08-02T15:26:01.374Z"
+      }
+    ]
   }
 ]

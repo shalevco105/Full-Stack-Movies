@@ -1,13 +1,15 @@
 import { Request, Response } from "express";
 import * as movieService from '../services/movieService';
 import { MovieModel } from "../models/movieModel";
+import { HTTP_STATUS } from "../constants/httpContants";
+import { ERROR_MESSAGES } from "../constants/errorMessages";
 
 export const getAllMovies = async (req: Request, res: Response): Promise<void> => {
     try {
-        const movies:MovieModel[] = await movieService.getAllMovies();
-        res.status(200).json(movies);
+        const movies: MovieModel[] = await movieService.getAllMovies();
+        res.status(HTTP_STATUS.OK).json(movies);
     } catch (error) {
-        res.status(500).json({ error: "An error occurred while getting the movies" });
+        res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR + " An error occurred while getting the movies" });
     }
 };
 
@@ -18,12 +20,12 @@ export const getMovieById = async (req: Request, res: Response): Promise<void> =
         const movie = await movieService.getMovieById(id);
 
         if (!movie) {
-            res.status(404).json({ error: `Movie with externalId ${id} not found` });
+            res.status(HTTP_STATUS.NOT_FOUND).json({ error: `Movie with externalId ${id} not found` });
         } else {
             res.json(movie);
         }
     } catch (error) {
-        res.status(500).json({ error: "Internal server error" });
+        res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
     }
 }
 
@@ -32,16 +34,16 @@ export const createMovie = async (req: Request, res: Response): Promise<void> =>
     try {
         const newMovie = await movieService.createMovie(movieToAdd);
         if (newMovie) {
-            res.status(201).json("Movie created: " + newMovie);
+            res.status(HTTP_STATUS.CREATED).json("Movie created: " + newMovie);
         } else {
             res
-                .status(500)
+                .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
                 .json({
                     error: "Failed to add movie - email is uniqe field, check it",
                 });
         }
     } catch (error) {
-        res.status(500).json({ error: "An error occurred while adding the movie" });
+        res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR + " An error occurred while adding the movie" });
     }
 };
 
@@ -54,12 +56,12 @@ export const updateMovie = async (req: Request, res: Response): Promise<void> =>
         if (updatedMovie) {
             res.json("Movie updated: " + updatedMovie);
         } else {
-            res.status(404).json({ message: "Movie not found" });
+            res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Movie not found" });
         }
     } catch (error) {
         res
-            .status(500)
-            .json({ error: "An error occurred while updating the movie" });
+            .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+            .json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR + " An error occurred while updating the movie" });
     }
 };
 
@@ -70,11 +72,11 @@ export const deleteMovie = async (req: Request, res: Response): Promise<void> =>
         if (deletedMovie) {
             res.json({ message: "Movie successfully deleted: ", deletedMovie });
         } else {
-            res.status(404).json({ message: "Movie not found" });
+            res.status(HTTP_STATUS.NOT_FOUND).json({ message: "Movie not found" });
         }
     } catch (error) {
         res
-            .status(500)
-            .json({ error: "An error occurred while deleting the movie" });
+            .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
+            .json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR + " An error occurred while deleting the movie" });
     }
 };

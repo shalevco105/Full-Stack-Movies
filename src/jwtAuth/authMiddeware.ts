@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "./jwtUtil";
+import { HTTP_STATUS } from "../constants/httpContants";
 
 export const authenticateToken = (
   req: Request,
@@ -10,7 +11,7 @@ export const authenticateToken = (
 
   if (!token) {
     console.log("No token provided");
-    return res.status(401).json({ error: "Access denied" });
+    return res.status(HTTP_STATUS.UNAUTHORIZED).json({ error: "Access denied" });
   }
   try {
     const userAuthData = verifyToken(token);

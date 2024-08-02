@@ -1,5 +1,6 @@
 import { Response, NextFunction } from "express";
-import JsonHandler from "./handlers/jsonHandler";
+import JsonHandler from "../handlers/jsonHandler";
+const ACTIONS_LIMIT = process.env.ACTIONS_LIMIT || '10';
 
 export const trackRequestCount = async (
   req: any,
@@ -12,13 +13,8 @@ export const trackRequestCount = async (
     req.session.counter++;
   }
 
-  console.log(
-    `Session ID: ${req.sessionID}, Request Count: ${req.session.counter}`
-  );
-
   try {
-    console.log("counter: " + req.session.counter);
-    if (req.session.counter > 10) {
+    if (req.session.counter > parseInt(ACTIONS_LIMIT)) {
       res.send("Request count limit reached. Please try again later.");
       return
     } else {
