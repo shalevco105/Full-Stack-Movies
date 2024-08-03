@@ -22,7 +22,7 @@ POST
     "password": "password"
 } 
 
-![register img](./readme/register.png)
+![register](./readme/register.png)
 
 3/ Then do login
 POST
