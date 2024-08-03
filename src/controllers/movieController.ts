@@ -20,7 +20,23 @@ export const getMovieById = async (req: Request, res: Response): Promise<void> =
         const movie = await movieService.getMovieById(id);
 
         if (!movie) {
-            res.status(HTTP_STATUS.NOT_FOUND).json({ error: `Movie with externalId ${id} not found` });
+            res.status(HTTP_STATUS.NOT_FOUND).json({ error: `Movie with id ${id} not found` });
+        } else {
+            res.json(movie);
+        }
+    } catch (error) {
+        res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
+    }
+}
+
+export const getMovieByExternalId = async (req: Request, res: Response): Promise<void> => {
+    const externalId = req.params.externalId;
+
+    try {
+        const movie = await movieService.getMovieByExternalId(externalId);
+
+        if (!movie) {
+            res.status(HTTP_STATUS.NOT_FOUND).json({ error: `Movie with extrnal id ${externalId} not found` });
         } else {
             res.json(movie);
         }

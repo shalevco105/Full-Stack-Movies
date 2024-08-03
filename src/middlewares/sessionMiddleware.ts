@@ -1,6 +1,6 @@
 import { Response, NextFunction } from "express";
 import JsonHandler from "../handlers/jsonHandler";
-const ACTIONS_LIMIT = process.env.ACTIONS_LIMIT || '10';
+const ACTIONS_LIMIT = process.env.ACTIONS_LIMIT || '100';
 
 export const trackRequestCount = async (
   req: any,
@@ -18,6 +18,7 @@ export const trackRequestCount = async (
       res.send("Request count limit reached. Please try again later.");
       return
     } else {
+      console.log(ACTIONS_LIMIT)
       await JsonHandler.addSessionToJson(
         req.sessionID,
         req.session.counter,

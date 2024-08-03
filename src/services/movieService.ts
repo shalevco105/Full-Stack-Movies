@@ -14,6 +14,12 @@ export const getMovieById = async (id: string): Promise<MovieModel | null> => {
   });
 };
 
+export const getMovieByExternalId = async (externalId: string): Promise<MovieModel | null> => {
+  return await fetchDbHandler<MovieModel | null>(async () => {
+    return await Movie.findOne({ externalId });
+  });
+};
+
 export const createMovie = async (MovieData: MovieModel): Promise<MovieModel | null> => {
   try {
     const newMovie = new Movie(MovieData);
@@ -29,12 +35,9 @@ export const updateMovie = async (
   MovieData: MovieModel
 ): Promise<MovieModel | null> => {
   try {
-    console.log(id);
-    console.log(MovieData);
-    const updatedMovie = await Movie.findByIdAndUpdate(id, MovieData, {
+    return await Movie.findByIdAndUpdate(id, MovieData, {
       new: true,
     });
-    return updatedMovie;
   } catch (error) {
     console.error("Error updating Movie:", error);
     return null;
@@ -43,8 +46,7 @@ export const updateMovie = async (
 
 export const deleteMovie = async (id: string): Promise<MovieModel | null> => {
   try {
-    const deletedMovie = await Movie.findByIdAndDelete(id);
-    return deletedMovie;
+    return await Movie.findByIdAndDelete(id);
   } catch (error) {
     console.error("Error deleting Movie:", error);
     return null;

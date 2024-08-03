@@ -33,6 +33,6 @@ authRouter.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-authRouter.get("/register", userController.createUser);
+authRouter.post("/register", userController.createUser);
 
 export default authRouter;

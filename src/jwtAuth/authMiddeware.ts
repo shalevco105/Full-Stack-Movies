@@ -15,7 +15,6 @@ export const authenticateToken = (
   }
   try {
     const userAuthData = verifyToken(token);
-    console.log("User authenticated:", userAuthData);
     if (!userAuthData || typeof userAuthData !== "object" || !userAuthData.id) {
       return res.status(403).json({ error: "Invalid token" });
     }

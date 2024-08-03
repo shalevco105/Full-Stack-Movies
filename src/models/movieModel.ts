@@ -5,7 +5,7 @@ export interface MovieModel extends Document {
   movie_name: string;
   movie_length: string;
   movie_picUrl: string;
-  externalId: number;
+  externalId?: number;
 }
 
 export default MovieModel;

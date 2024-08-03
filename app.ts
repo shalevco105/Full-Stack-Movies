@@ -1,17 +1,18 @@
-import express from "express";
-import userRouter from "./src/routers/userRouter";
-import movieRouter from "./src/routers/movieRouter";
-import { trackRequestCount } from "./src/middlewares/sessionMiddleware";
-import connectDB from "./src/dbConnect";
 import dotenv from "dotenv";
-import session from "express-session";
-
 dotenv.config();
 
-const app = express();
-connectDB();
+import userRouter from "./src/routers/userRouter";
+import movieRouter from "./src/routers/movieRouter";
+import authRouter from "./src/routers/authRouter";
+import { trackRequestCount } from "./src/middlewares/sessionMiddleware";
+import session from "express-session";
+import express from "express";
+import connectDB from "./src/dbConnect";
 
+
+const app = express();
 app.use(express.json());
+
 
 app.use(
   session({
@@ -25,8 +26,9 @@ app.use(
 
 app.use(trackRequestCount);
 
-// app.use("/auth", authRouter);
+app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/movie", movieRouter);
 
+connectDB();
 app.listen(3000);

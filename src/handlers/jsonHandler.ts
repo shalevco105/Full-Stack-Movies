@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { SessionModel } from "../models/sessionModel";
 const jsonFilePath = path.join(__dirname, "../sessions.json");
-const ACTIONS_LIMIT = process.env.ACTIONS_LIMIT || '10';
+const ACTIONS_LIMIT = process.env.ACTIONS_LIMIT || '100';
 
 class JsonHandler {
   static async addSessionToJson(
@@ -20,6 +20,7 @@ class JsonHandler {
 
       if (session) {
         if (session.actions.length > 0 && action && times !== undefined) {
+          console.log(ACTIONS_LIMIT)
           session.actions.push({
             numOfActionLeft: parseInt(ACTIONS_LIMIT) - times,
             actionExecuted: action,
@@ -33,7 +34,7 @@ class JsonHandler {
           sessionId: sessionId,
           actions: [
             {
-              numOfActionLeft: 9,
+              numOfActionLeft: parseInt(ACTIONS_LIMIT) - 1,
               actionExecuted: "session created",
               date: new Date(),
             },

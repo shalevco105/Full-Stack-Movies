@@ -31,10 +31,9 @@ export const updateUser = async (
   try {
     console.log(id);
     console.log(userData);
-    const updatedUser = await User.findByIdAndUpdate(id, userData, {
+    return await User.findByIdAndUpdate(id, userData, {
       new: true,
     });
-    return updatedUser;
   } catch (error) {
     console.error("Error updating user:", error);
     return null;
@@ -43,8 +42,7 @@ export const updateUser = async (
 
 export const deleteUser = async (id: string): Promise<UserModel | null> => {
   try {
-    const deletedUser = await User.findByIdAndDelete(id);
-    return deletedUser;
+    return await User.findByIdAndDelete(id);
   } catch (error) {
     console.error("Error deleting user:", error);
     return null;
