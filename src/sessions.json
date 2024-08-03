@@ -376,6 +376,16 @@
         "numOfActionLeft": 96,
         "actionExecuted": "/movie/66ae1cc4a10fb2e5c6b382ac",
         "date": "2024-08-03T12:52:06.924Z"
+      },
+      {
+        "numOfActionLeft": 95,
+        "actionExecuted": "/auth/login",
+        "date": "2024-08-03T12:59:00.443Z"
+      },
+      {
+        "numOfActionLeft": 94,
+        "actionExecuted": "/auth/register",
+        "date": "2024-08-03T12:59:53.224Z"
       }
     ]
   }
