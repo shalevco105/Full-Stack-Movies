@@ -1,9 +1,11 @@
-This project is node server using:
-express, 
-typescript,
-mongodb,
-jwt,
-sessions.
+This project is node server that deal with users and movies.
+It using:
+Express, 
+Typescript,
+MongoDB - mongoose,
+JWT - login, register, full authentication,
+Crypto - encrypt/decrypt password in db,
+Sessions - session id, cookie, middleware.
 
 For using it:
 1/ create mongo data base named db and two collections: user and movie:
@@ -57,3 +59,4 @@ movie model:
 
 Pay attention - you are limited in actions, by default you have only 100.
 You can change it in .env and check for remaining amount in the session.json file
+![sessions](./readme/sessions.png)

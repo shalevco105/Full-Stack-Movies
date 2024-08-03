@@ -353,5 +353,30 @@
         "date": "2024-08-03T12:44:15.593Z"
       }
     ]
+  },
+  {
+    "sessionId": "WzEo96RYjf9fl7DrB73kAeJ-AqeWALcr",
+    "actions": [
+      {
+        "numOfActionLeft": 99,
+        "actionExecuted": "session created",
+        "date": "2024-08-03T12:51:59.022Z"
+      },
+      {
+        "numOfActionLeft": 98,
+        "actionExecuted": "/movie/66ae1cc4a10fb2e5c6b382ac",
+        "date": "2024-08-03T12:52:03.285Z"
+      },
+      {
+        "numOfActionLeft": 97,
+        "actionExecuted": "/movie/66ae1cc4a10fb2e5c6b382ac",
+        "date": "2024-08-03T12:52:04.235Z"
+      },
+      {
+        "numOfActionLeft": 96,
+        "actionExecuted": "/movie/66ae1cc4a10fb2e5c6b382ac",
+        "date": "2024-08-03T12:52:06.924Z"
+      }
+    ]
   }
 ]
