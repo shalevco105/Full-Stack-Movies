@@ -4,6 +4,7 @@ import { generateToken } from "../jwtAuth/jwtUtil";
 import { HTTP_STATUS } from "../constants/httpContants";
 import { ERROR_MESSAGES } from "../constants/errorMessages";
 import * as userController from '../controllers/userController';
+import { encrypt } from "../jwtAuth/cryptoUtil";
 
 const authRouter = Router();
 
@@ -27,7 +28,10 @@ authRouter.post("/login", async (req: Request, res: Response) => {
 
     const token = generateToken(user._id.toString());
     console.log("Generated Token:", token);
-    res.json({ token });
+
+    const data = { user, token };
+    const encryptedData = encrypt(JSON.stringify(data))
+    res.send(encryptedData)
   } catch (error) {
     res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR });
   }

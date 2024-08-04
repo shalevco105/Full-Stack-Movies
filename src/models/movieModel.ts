@@ -2,9 +2,10 @@ import { Document, Types } from "mongoose";
 
 export interface MovieModel extends Document {
   _id: Types.ObjectId;
-  movie_name: string;
-  movie_length: string;
-  movie_picUrl: string;
+  name: string;
+  length: string;
+  picUrl: string;
+  price: number;
   externalId?: number;
 }
 

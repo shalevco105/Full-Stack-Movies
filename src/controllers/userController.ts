@@ -4,6 +4,7 @@ import { UserModel } from "../models/userModel";
 import { HTTP_STATUS } from "../constants/httpContants";
 import { ERROR_MESSAGES } from "../constants/errorMessages";
 import { generateToken } from "../jwtAuth/jwtUtil";
+import { encrypt } from "../jwtAuth/cryptoUtil";
 
 export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -39,7 +40,9 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
     const newUser = await userService.createUser(userToAdd);
     if (newUser) {
       const token = generateToken(newUser._id.toString());
-      res.json({ username: newUser.username, token });
+      const data = { user: newUser, token };
+      const encryptedData = encrypt(JSON.stringify(data))
+      res.send(encryptedData)
     } else {
       res
         .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)

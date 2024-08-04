@@ -2,9 +2,10 @@ import mongoose, { Schema } from "mongoose";
 import MovieModel from "../models/movieModel";
 
 const MovieSchema: Schema<MovieModel> = new Schema({
-  movie_name: { type: String, required: true },
-  movie_length: { type: String, required: true },
-  movie_picUrl: { type: String, required: true },
+  name: { type: String, required: true },
+  length: { type: String, required: true },
+  picUrl: { type: String, required: true },
+  price: { type: Number, required: true },
   externalId: { type: Number, required: false, unique: true },
 });
 
