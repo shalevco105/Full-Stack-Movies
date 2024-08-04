@@ -29,8 +29,6 @@ export const updateUser = async (
   userData: UserModel
 ): Promise<UserModel | null> => {
   try {
-    console.log(id);
-    console.log(userData);
     return await User.findByIdAndUpdate(id, userData, {
       new: true,
     });

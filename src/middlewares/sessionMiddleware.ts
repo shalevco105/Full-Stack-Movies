@@ -18,7 +18,6 @@ export const trackRequestCount = async (
       res.send("Request count limit reached. Please try again later.");
       return
     } else {
-      console.log(ACTIONS_LIMIT)
       await JsonHandler.addSessionToJson(
         req.sessionID,
         req.session.counter,

@@ -20,7 +20,6 @@ class JsonHandler {
 
       if (session) {
         if (session.actions.length > 0 && action && times !== undefined) {
-          console.log(ACTIONS_LIMIT)
           session.actions.push({
             numOfActionLeft: parseInt(ACTIONS_LIMIT) - times,
             actionExecuted: action,

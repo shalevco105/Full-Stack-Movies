@@ -3,6 +3,7 @@ import * as userService from '../services/userService';
 import { UserModel } from "../models/userModel";
 import { HTTP_STATUS } from "../constants/httpContants";
 import { ERROR_MESSAGES } from "../constants/errorMessages";
+import { generateToken } from "../jwtAuth/jwtUtil";
 
 export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -37,7 +38,8 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
   try {
     const newUser = await userService.createUser(userToAdd);
     if (newUser) {
-      res.status(HTTP_STATUS.CREATED).json("User created: " + newUser);
+      const token = generateToken(newUser._id.toString());
+      res.json({ username: newUser.username, token });
     } else {
       res
         .status(HTTP_STATUS.INTERNAL_SERVER_ERROR)
