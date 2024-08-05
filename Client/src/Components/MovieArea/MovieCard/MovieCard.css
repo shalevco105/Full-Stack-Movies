@@ -1,0 +1,34 @@
+.MovieCard {
+    width: 300px;
+    display: inline-flex;
+    background-image: linear-gradient(90deg, #569cdd, #00013ede);
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 6px;
+    box-shadow: 3px 3px 7px;
+    text-align: left;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .MovieCard {
+        width: 70%;
+    }
+
+    .MovieCard img {
+        width: 100px;
+    }
+}
+
+.MovieCard img {
+    width: 60px;
+    height: 60px;
+    border: 1px solid;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+.MovieCard>div:last-child {
+    margin-left: auto;
+}
