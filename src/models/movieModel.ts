@@ -4,7 +4,7 @@ export interface MovieModel extends Document {
   _id: Types.ObjectId;
   name: string;
   length: string;
-  picUrl: string;
+  imageUrl: string;
   price: number;
   externalId?: number;
 }

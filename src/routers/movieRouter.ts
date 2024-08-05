@@ -10,7 +10,7 @@ movieRouter.get('/data', movieController.getAllMovies);
 movieRouter.get("/:id", movieController.getMovieById);
 movieRouter.get("/externalId/:externalId", movieController.getMovieByExternalId);
 movieRouter.post("/create", movieController.createMovie);
-movieRouter.put("/update/:id", movieController.updateMovie);
-movieRouter.delete("/delete/:id", movieController.deleteMovie);
+movieRouter.put("/:externalId", movieController.updateMovie);
+movieRouter.delete("/:externalId", movieController.deleteMovie);
 
 export default movieRouter;

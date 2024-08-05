@@ -31,25 +31,28 @@ export const createMovie = async (MovieData: MovieModel): Promise<MovieModel | n
 }
 
 export const updateMovie = async (
-  id: string,
+  externalId: string,
   MovieData: MovieModel
 ): Promise<MovieModel | null> => {
   try {
-    return await Movie.findByIdAndUpdate(id, MovieData, {
-      new: true,
-    });
+    return await Movie.findOneAndUpdate(
+      { externalId }, MovieData, { new: true });
   } catch (error) {
     console.error("Error updating Movie:", error);
     return null;
   }
 }
 
-export const deleteMovie = async (id: string): Promise<MovieModel | null> => {
+export const deleteMovie = async (externalId: string): Promise<MovieModel | null> => {
   try {
-    return await Movie.findByIdAndDelete(id);
+    return await Movie.findOneAndDelete({ externalId: externalId });
   } catch (error) {
     console.error("Error deleting Movie:", error);
     return null;
   }
 }
 
+
+export function findOneAndUpdate(arg0: { externalId: string; }, movieToUpdate: MovieModel, arg2: { new: boolean; }) {
+  throw new Error("Function not implemented.");
+}

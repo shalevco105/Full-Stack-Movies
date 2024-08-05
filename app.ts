@@ -11,17 +11,17 @@ import connectDB from "./src/dbConnect";
 import cors from 'cors';
 
 const app = express();
+app.use(express.json());
 
 const PORT = process.env.PORT || 3030;
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 
 app.use(cors({
-  origin: '*', // Allow all origins
+  origin: '*',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization'
 }));
 
-app.use(express.json());
 
 app.use(
   session({

@@ -4,7 +4,7 @@ import MovieModel from "../models/movieModel";
 const MovieSchema: Schema<MovieModel> = new Schema({
   name: { type: String, required: true },
   length: { type: String, required: true },
-  picUrl: { type: String, required: true },
+  imageUrl: { type: String, required: true },
   price: { type: Number, required: true },
   externalId: { type: Number, required: false, unique: true },
 });
