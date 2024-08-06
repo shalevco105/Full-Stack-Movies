@@ -1,4 +1,4 @@
-import fetchDbHandler from "../handlers/fetchDbHandler";
+import fetchDbHandler from "../utils/fetchDbHandler";
 import { UserModel } from "../models/userModel";
 import User from "../schemas/userSchema";
 

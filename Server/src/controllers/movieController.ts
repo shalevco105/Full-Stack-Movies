@@ -3,6 +3,7 @@ import * as movieService from '../services/movieService';
 import { MovieModel } from "../models/movieModel";
 import { HTTP_STATUS } from "../constants/httpContants";
 import { ERROR_MESSAGES } from "../constants/errorMessages";
+import JsonUtil from "../utils/jsonUtil";
 
 export const getAllMovies = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -50,8 +51,8 @@ export const getMovieByExternalId = async (req: Request, res: Response): Promise
 
 export const createMovie = async (req: Request, res: Response): Promise<void> => {
     const movieToAdd: MovieModel = await req.body;
-    console.log({movieToAdd});
-    
+    console.log({ movieToAdd });
+
     if (movieToAdd && JSON.stringify(movieToAdd) !== '{}') {
         try {
             const newMovie = await movieService.createMovie(movieToAdd);
@@ -123,3 +124,15 @@ export const deleteMovie = async (req: Request, res: Response): Promise<void> =>
             .json({ error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR + " An error occurred while deleting the movie" });
     }
 };
+
+
+export const resetMovies = async (req: Request, res: Response): Promise<void> => {
+    const newMovies = await JsonUtil.readMoviesFromJson();
+
+    try {
+        await movieService.resetMovies(newMovies)
+        res.status(HTTP_STATUS.OK).send({ message: 'Movie collection has been reset successfully' });
+    } catch (error) {
+        res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).send({ message: 'Error reset movie collection', error });
+    }
+}

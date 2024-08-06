@@ -1,17 +1,19 @@
 import fs from "fs/promises";
 import path from "path";
 import { SessionModel } from "../models/sessionModel";
-const jsonFilePath = path.join(__dirname, "../sessions.json");
+
+const sessionsJsonPath = path.join(__dirname, "../data/sessions.json");
+const moviesJsonPath = path.join(__dirname, "../data/movies.json");
 const ACTIONS_LIMIT = process.env.ACTIONS_LIMIT || '100';
 
-class JsonHandler {
+class JsonUtil {
   static async addSessionToJson(
     sessionId: string,
     times?: number,
     action?: string
   ): Promise<void> {
     try {
-      const data = await fs.readFile(jsonFilePath, "utf-8");
+      const data = await fs.readFile(sessionsJsonPath, "utf-8");
       const sessions: SessionModel[] = JSON.parse(data);
 
       const session = sessions.find(
@@ -41,11 +43,21 @@ class JsonHandler {
         });
       }
 
-      await fs.writeFile(jsonFilePath, JSON.stringify(sessions, null, 2), "utf-8");
+      await fs.writeFile(sessionsJsonPath, JSON.stringify(sessions, null, 2), "utf-8");
     } catch (err) {
       console.error("Error reading or writing JSON file:", err);
     }
   }
+
+  static async readMoviesFromJson(): Promise<any[]> {
+    try {
+      const fileData = await fs.readFile(moviesJsonPath, 'utf8');
+      return JSON.parse(fileData);
+    } catch (error) {
+      console.error('Error reading or parsing JSON file:', error);
+      throw new Error('Failed to read or parse movies data.');
+    }
+  }
 }
 
-export default JsonHandler;
+export default JsonUtil;

@@ -1,4 +1,4 @@
-import fetchDbHandler from "../handlers/fetchDbHandler";
+import fetchDbHandler from "../utils/fetchDbHandler";
 import { MovieModel } from "../models/movieModel";
 import Movie from "../schemas/movieSchema";
 
@@ -52,7 +52,17 @@ export const deleteMovie = async (externalId: string): Promise<MovieModel | null
   }
 }
 
+export const resetMovies = async (newMovies: MovieModel[]): Promise<MovieModel[] | null> => {
+  try {
+    let moviesToReturn = null
+    if (newMovies && resetMovies.length > 0) {
+      await Movie.deleteMany({});
+      moviesToReturn = await Movie.insertMany(newMovies);
+    }
 
-export function findOneAndUpdate(arg0: { externalId: string; }, movieToUpdate: MovieModel, arg2: { new: boolean; }) {
-  throw new Error("Function not implemented.");
+    return moviesToReturn
+  } catch (error) {
+    console.error("Error reseting Movies:", error);
+    return null;
+  }
 }
