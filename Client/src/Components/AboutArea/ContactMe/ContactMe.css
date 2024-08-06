@@ -1,8 +1,8 @@
-.ContactUs > form {
+.ContactMe > form {
 	width: 450px;
 }
 
-.ContactUs > form > * {
+.ContactMe > form > * {
     width: 100%;
     margin: 5px 0;
 }

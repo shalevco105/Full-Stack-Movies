@@ -1,6 +1,6 @@
 import { Copyrights } from "../Copyrights/Copyrights";
 import { Header } from "../Header/Header";
-import { Menu } from "../Menu/Menu";
+import { SideNavbar } from "../SideNavbar/SideNavbar";
 import { Routing } from "../Routing/Routing";
 import "./Layout.css";
 
@@ -11,7 +11,7 @@ export function Layout(): JSX.Element {
                 <Header />
             </header>
             <aside>
-                <Menu />
+                <SideNavbar />
             </aside>
             <main>
                 <Routing />

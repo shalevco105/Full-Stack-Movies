@@ -4,8 +4,8 @@ class AppConfig {
 	public readonly registerUrl = "http://localhost:3030/auth/register/";
 	public readonly loginUrl = "http://localhost:3030/auth/login/";
 
-	public readonly chatGptUrl = "https://api.openai.com/v1/chat/completions";
-	public readonly chatGptKey = "your-api-key-here";
+	public readonly geminiUrl = "https://api.openai.com/v1/chat/completions";
+	public readonly geminiKey = "AIzaSyA96K4uCCFPnSUC7iu1Qx6pdLUcKWXRzlM";
 
 }
 

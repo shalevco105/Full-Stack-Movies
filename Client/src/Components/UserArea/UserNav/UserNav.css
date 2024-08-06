@@ -22,6 +22,10 @@
       padding-right: 1vw;
   }
 
+  .nav-link:hover {
+      background-color: #2d83c56d !important;
+  }
+
   .hello {
       margin: auto !important;
       padding-right: 0.5rem;

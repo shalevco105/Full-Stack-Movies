@@ -5,6 +5,7 @@ import { notify } from "../../../Utils/notify";
 import { CredentialsModel } from "../../../Models/CredentialsModel";
 import { store } from "../../../Redux/store";
 import { TextField, Button, Typography, Box } from "@mui/material";
+import { PageTitle } from "../../LayoutArea/PageTitle/PageTitle";
 
 
 export function Login(): JSX.Element {
@@ -24,9 +25,7 @@ export function Login(): JSX.Element {
     return (
         <Box className="Login" component="form" onSubmit={handleSubmit(onSubmit)}
             noValidate sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 4 }}>
-            <Typography gutterBottom sx={{ fontSize: '2rem' }}>
-                Login
-            </Typography>
+            <PageTitle title="Login" />
             <TextField
                 margin="normal"
                 required

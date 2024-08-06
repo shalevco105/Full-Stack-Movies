@@ -28,8 +28,8 @@ export function UserNav(): JSX.Element {
                                 HELLO GUEST
                             </Typography>
                             |
-                            <Button color="inherit" href="/register">Register</Button>|
-                            <Button color="inherit" href="/login">Login</Button>
+                            <Button className="nav-link" color="inherit" href="/register">Register</Button>|
+                            <Button className="nav-link" color="inherit" href="/login">Login</Button>
                         </>
                     }
                     {

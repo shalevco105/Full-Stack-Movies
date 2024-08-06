@@ -9,29 +9,56 @@ import { AddMovie } from "../../MovieArea/AddMovie/AddMovie";
 import { EditMovie } from "../../MovieArea/EditMovie/EditMovie";
 import { Register } from "../../UserArea/Register/Register";
 import { Login } from "../../UserArea/Login/Login";
-import { ContactUs } from "../../AboutArea/ContactUs/ContactUs";
+import { ContactMe } from "../../AboutArea/ContactMe/ContactMe";
+import GeminiForm from "../../HomeArea/GeminiForm/GeminiForm";
+import AuthWrapper from "../AuthWrapper";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../Redux/store";
+import { UserModel } from "../../../Models/UserModel";
 
 export function Routing(): JSX.Element {
-
+    const isAuthenticated = !!useSelector<AppState, UserModel>(store => store.user);
     const LazyAbout = lazy(() => import("../../AboutArea/About/About"));
-
     const suspenseAbout = <Suspense> <LazyAbout /> </Suspense>
 
     return (
         <div className="Routing">
-			<Routes>
+            <Routes>
                 <Route path="/home" element={<Home />} />
+                <Route path="/gemini" element={
+                    <AuthWrapper isAuthenticated={isAuthenticated}>
+                        <GeminiForm />
+                    </AuthWrapper>
+                } />
 
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
 
-                <Route path="/movies" element={<MovieList />} />
-                <Route path="/movies/details/:prodId" element={<MovieDetails />} />
-                <Route path="/movies/new" element={<AddMovie />} />
-                <Route path="/movies/edit/:prodId" element={<EditMovie />} />
+                <Route path="/movies" element={
+                    <AuthWrapper isAuthenticated={isAuthenticated}>
+                        <MovieList />
+                    </AuthWrapper>
+                } />
+                <Route path="/movies/details/:externalId" element={
+                    <AuthWrapper isAuthenticated={isAuthenticated}>
+                        <MovieDetails />
+                    </AuthWrapper>
+                } />
+
+                <Route path="/movies/new" element={
+                    <AuthWrapper isAuthenticated={isAuthenticated}>
+                        <AddMovie />
+                    </AuthWrapper>
+                } />
+
+                <Route path="/movies/edit/:externalId" element={
+                    <AuthWrapper isAuthenticated={isAuthenticated}>
+                        <EditMovie />
+                    </AuthWrapper>
+                } />
 
                 <Route path="/about" element={suspenseAbout} />
-                <Route path="/contact-us" element={<ContactUs />} />
+                <Route path="/contact-us" element={<ContactMe />} />
 
                 <Route path="/" element={<Navigate to="/home" />} />
 

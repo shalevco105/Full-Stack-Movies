@@ -1,14 +1,17 @@
 import { NavLink } from "react-router-dom";
 import { List, ListItem, ListItemText } from "@mui/material";
 import { TotalMovies } from "../../MovieArea/TotalMovies/TotalMovies";
-import "./Menu.css";
+import "./SideNavbar.css";
 
-export function Menu(): JSX.Element {
+export function SideNavbar(): JSX.Element {
     return (
         <div className="Menu">
             <List>
                 <ListItem component={NavLink} to="/home">
                     <ListItemText primary="Home" />
+                </ListItem>
+                <ListItem component={NavLink} to="/gemini">
+                    <ListItemText primary="Gemini Prompt" />
                 </ListItem>
                 <ListItem component={NavLink} to="/movies" end>
                     <ListItemText primary="Movies" />

@@ -1,0 +1,16 @@
+.social-icon-button {
+    font-size: 3rem;
+}
+
+.social-icon {
+    font-size: 3rem;
+    color: #3b5998;
+}
+
+.social-icon-button[aria-label='LinkedIn'] .social-icon {
+    color: #0e76a8;
+}
+
+.social-icon-button[aria-label='Instagram'] .social-icon {
+    color: #c13584;
+}

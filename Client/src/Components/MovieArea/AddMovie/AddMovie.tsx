@@ -6,10 +6,10 @@ import { notify } from "../../../Utils/notify";
 import { useNavigate } from "react-router-dom";
 import { useTitle } from "../../../Utils/UseTitle";
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { PageTitle } from "../../LayoutArea/PageTitle/PageTitle";
 
 export function AddMovie(): JSX.Element {
-
-    useTitle("Shalev's App Add Movie");
+    useTitle("Add Movie");
 
     const { register, handleSubmit, formState } = useForm<MovieModel>();
     const navigate = useNavigate();
@@ -28,9 +28,7 @@ export function AddMovie(): JSX.Element {
 
     return (
         <Container maxWidth="sm" className="AddMovie">
-            <Typography gutterBottom sx={{ fontSize: '2rem' }}>
-                Add New Movie
-            </Typography>
+            <PageTitle title="Add New Movie"/>
             <form onSubmit={handleSubmit(send)}>
                 <Box mb={2}>
                     <TextField

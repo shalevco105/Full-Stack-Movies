@@ -6,6 +6,7 @@ import { MovieCard } from "../MovieCard/MovieCard";
 import { notify } from "../../../Utils/notify";
 import { useTitle } from "../../../Utils/UseTitle";
 import { Typography } from "@mui/material";
+import { PageTitle } from "../../LayoutArea/PageTitle/PageTitle";
 
 export function MovieList(): JSX.Element {
 
@@ -21,9 +22,7 @@ export function MovieList(): JSX.Element {
 
     return (
         <div className="MovieList">
-            <Typography gutterBottom sx={{ fontSize: '2rem' }}>
-                Click to Edit or Delete
-            </Typography>
+            <PageTitle title="Click to Edit or Delete" />
             {movies.map(movie => <MovieCard key={movie.externalId} movie={movie} />)}
         </div>
     );

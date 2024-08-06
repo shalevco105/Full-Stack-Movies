@@ -1,16 +1,20 @@
 .Layout {
-	height: 100%;
+    height: 100%;
     box-sizing: border-box;
     display: grid;
     grid-template-rows: 10% 85% 5%;
-    grid-template-columns: 1fr 5fr; /* fr = Fraction - יחידת מידה */
+    grid-template-columns: 1fr 5fr;
 }
 
-.Layout, header, aside, main, footer {
-    border: 1px solid;
+.Layout,
+aside,
+main,
+footer {
+    border: 0.5px solid;
 }
 
-header, footer {
+header,
+footer {
     grid-column: span 2;
 }
 

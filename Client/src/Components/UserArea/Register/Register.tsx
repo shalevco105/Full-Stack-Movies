@@ -5,6 +5,7 @@ import { UserModel } from "../../../Models/UserModel";
 import { notify } from "../../../Utils/notify";
 import { userService } from "../../../Services/UserService";
 import { useNavigate } from "react-router-dom";
+import { PageTitle } from "../../LayoutArea/PageTitle/PageTitle";
 
 export function Register(): JSX.Element {
     const { register, handleSubmit } = useForm<UserModel>();
@@ -27,10 +28,7 @@ export function Register(): JSX.Element {
                 onSubmit={handleSubmit(send)}
                 sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 4 }}
             >
-                <Typography gutterBottom sx={{ fontSize: '2rem' }}>
-                    Register
-                </Typography>
-
+                <PageTitle title="Register" />
                 <TextField
                     label="Username"
                     {...register("username")}

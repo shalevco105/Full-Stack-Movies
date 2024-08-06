@@ -4,14 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { movieService } from "../../../Services/MovieService";
 import { notify } from "../../../Utils/notify";
 import { useEffect } from "react";
-import { TextField, Button, Typography, Box, Container } from "@mui/material";
+import { TextField, Button, Box, Container } from "@mui/material";
 import "./EditMovie.css";
+import { PageTitle } from "../../LayoutArea/PageTitle/PageTitle";
 
 export function EditMovie(): JSX.Element {
     const { register, handleSubmit, formState, setValue } = useForm<MovieModel>();
     const navigate = useNavigate();
     const params = useParams();
-    const externalId = +params.prodId;
+    const externalId = +params.externalId;
 
     useEffect(() => {
         movieService.getOneMovie(externalId)
@@ -38,9 +39,7 @@ export function EditMovie(): JSX.Element {
 
     return (
         <Container maxWidth="sm" className="EditMovie">
-            <Typography gutterBottom sx={{ fontSize: '2rem' }}>
-                Edit Movie: {externalId}
-            </Typography>
+            <PageTitle title={`Edit Movie: ${externalId}`} />
             <form onSubmit={handleSubmit(send)}>
                 <Box mb={2}>
                     <TextField

@@ -1,28 +1,14 @@
-import { useEffect } from "react";
-import { TestAuth } from "../TestAuth/TestAuth";
 import "./Home.css";
 import { useTitle } from "../../../Utils/UseTitle";
-import { Vat } from "../Vat/Vat";
-import { chatGptService } from "../../../Services/ChatGptService";
+import GeminiForm from "../GeminiForm/GeminiForm";
+import { PageTitle } from "../../LayoutArea/PageTitle/PageTitle";
 
 export function Home(): JSX.Element {
-
-    useTitle("Shalev's App Home");
-
-    useEffect(()=>{
-
-        // chatGptService.chat("Tell me a programming joke")
-        //     .then(completion => console.log(completion))
-        //     .catch(err => console.log(err));
-
-    }, []);
-
+    useTitle("Shalev's Movies Home");
     return (
         <div className="Home">
-            <TestAuth />
-
-            <Vat />
-
+            <PageTitle title="Welcome to Shalev's Movies Website" />
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/RWH8_tvsMBc?autoplay=true" allow="autoplay" title="Page not Found"></iframe>
         </div>
     );
 }

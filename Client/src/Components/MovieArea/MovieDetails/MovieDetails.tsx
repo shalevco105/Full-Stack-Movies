@@ -9,7 +9,7 @@ import "./MovieDetails.css";
 
 export function MovieDetails(): JSX.Element {
     const params = useParams();
-    const externalId = +params.prodId;
+    const externalId = +params.externalId;
 
     const [movie, setMovie] = useState<MovieModel>();
     const navigate = useNavigate();
