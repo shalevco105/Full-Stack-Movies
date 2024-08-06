@@ -2128,5 +2128,65 @@
         "date": "2024-08-06T18:08:11.459Z"
       }
     ]
+  },
+  {
+    "sessionId": "j7e2Qv4c27d2ffq84yeD2L7lRAoV1arc",
+    "actions": [
+      {
+        "numOfActionLeft": 99,
+        "actionExecuted": "session created",
+        "date": "2024-08-06T18:29:32.242Z"
+      }
+    ]
+  },
+  {
+    "sessionId": "x9fqY0fdeITcWlhZ54oXThB3qjV2PRNM",
+    "actions": [
+      {
+        "numOfActionLeft": 99,
+        "actionExecuted": "session created",
+        "date": "2024-08-06T18:30:32.001Z"
+      }
+    ]
+  },
+  {
+    "sessionId": "F5mZpQVZIzYiCadwIbuurgaafVPOV97V",
+    "actions": [
+      {
+        "numOfActionLeft": 99,
+        "actionExecuted": "session created",
+        "date": "2024-08-06T18:31:11.471Z"
+      }
+    ]
+  },
+  {
+    "sessionId": "DbfXpeYjWxXzxZUL4CjEUWtjVeHN9SO3",
+    "actions": [
+      {
+        "numOfActionLeft": 99,
+        "actionExecuted": "session created",
+        "date": "2024-08-06T18:31:35.790Z"
+      }
+    ]
+  },
+  {
+    "sessionId": "yg7mhExTSBFyvT5AS_Zi2nCGIoH0ECda",
+    "actions": [
+      {
+        "numOfActionLeft": 99,
+        "actionExecuted": "session created",
+        "date": "2024-08-06T18:34:59.529Z"
+      }
+    ]
+  },
+  {
+    "sessionId": "dZ_jZTQHQXN0SGTR8hgOcebpvx3VbK-f",
+    "actions": [
+      {
+        "numOfActionLeft": 99,
+        "actionExecuted": "session created",
+        "date": "2024-08-06T18:35:01.944Z"
+      }
+    ]
   }
 ]

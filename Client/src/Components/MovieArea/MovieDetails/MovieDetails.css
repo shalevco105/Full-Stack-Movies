@@ -3,7 +3,7 @@
 }
 
 .movie-card {
-	background-color: #0a056a91 !important;
+	background: linear-gradient(135deg, #90ade8, #ffffff);
 	max-width: 600px;
 	margin: auto;
 }

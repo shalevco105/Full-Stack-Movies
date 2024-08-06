@@ -1,7 +1,8 @@
 .MovieCard {
     width: 300px;
     display: inline-flex;
-    background-image: linear-gradient(90deg, #569cdd, #00013ede);
+
+    background-image: linear-gradient(90deg, #569cdd, #03056ede);
     margin: 10px;
     padding: 10px;
     border: 1px solid;
