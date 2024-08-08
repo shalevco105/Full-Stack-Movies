@@ -1,12 +1,12 @@
+const env = process.env.CONFIG_ENV || "development";
+const configData = require(`../../config/config.${env}.json`);
+
 class AppConfig {
-
-	public readonly moviesUrl = "http://localhost:3030/movie/";
-	public readonly registerUrl = "http://localhost:3030/auth/register/";
-	public readonly loginUrl = "http://localhost:3030/auth/login/";
-
-	public readonly geminiUrl = "https://api.openai.com/v1/chat/completions";
-	public readonly geminiKey = "AIzaSyA96K4uCCFPnSUC7iu1Qx6pdLUcKWXRzlM";
-
+    public readonly moviesUrl: string = configData.moviesUrl;
+    public readonly registerUrl: string = configData.registerUrl;
+    public readonly loginUrl: string = configData.loginUrl;
+    public readonly geminiUrl: string = configData.geminiUrl;
+    public readonly geminiKey: string = configData.geminiKey;
 }
 
 export const appConfig = new AppConfig();
