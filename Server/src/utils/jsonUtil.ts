@@ -1,10 +1,12 @@
 import fs from "fs/promises";
 import path from "path";
 import { SessionModel } from "../models/sessionModel";
+import { appConfig } from "./appConfig";
+
+const ACTION_LIMIT = appConfig.ACTIONS_LIMIT
 
 const sessionsJsonPath = path.join(__dirname, "../data/sessions.json");
 const moviesJsonPath = path.join(__dirname, "../data/movies.json");
-const ACTIONS_LIMIT = process.env.ACTIONS_LIMIT || '100';
 
 class JsonUtil {
   static async addSessionToJson(
@@ -23,7 +25,7 @@ class JsonUtil {
       if (session) {
         if (session.actions.length > 0 && action && times !== undefined) {
           session.actions.push({
-            numOfActionLeft: parseInt(ACTIONS_LIMIT) - times,
+            numOfActionLeft: ACTION_LIMIT - times,
             actionExecuted: action,
             date: new Date(),
           });
@@ -35,7 +37,7 @@ class JsonUtil {
           sessionId: sessionId,
           actions: [
             {
-              numOfActionLeft: parseInt(ACTIONS_LIMIT) - 1,
+              numOfActionLeft: ACTION_LIMIT - 1,
               actionExecuted: "session created",
               date: new Date(),
             },

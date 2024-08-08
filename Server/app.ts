@@ -1,3 +1,4 @@
+import { appConfig } from './src/utils/appConfig';
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -13,11 +14,8 @@ import cors from 'cors';
 const app = express();
 app.use(express.json());
 
-const PORT = process.env.PORT || 3030;
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
-
 app.use(cors({
-  origin: '*',
+  origin: appConfig.CLIENT_URL,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Origin,X-Requested-With,Content-Type,Accept,Authorization'
 }));
@@ -25,7 +23,7 @@ app.use(cors({
 
 app.use(
   session({
-    secret: process.env.JWT_SECRET_KEY || "JWT_SECRET_KEY",
+    secret: appConfig.JWT_SECRET_KEY || "JWT_SECRET_KEY",
     resave: false,
     saveUninitialized: false,
     name: "sessionCookie",
@@ -41,6 +39,7 @@ app.use("/movie", movieRouter);
 
 connectDB();
 
+const PORT = appConfig.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

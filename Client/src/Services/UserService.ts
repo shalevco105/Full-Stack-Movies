@@ -1,24 +1,11 @@
 import axios from "axios";
 import { UserModel } from "../Models/UserModel";
 import { appConfig } from "../Utils/AppConfig";
-import { jwtDecode } from "jwt-decode";
 import { store, userActions } from "../Redux/store";
 import { CredentialsModel } from "../Models/CredentialsModel";
 import { decrypt } from "./EncryptionService";
 
 class UserService {
-
-    public constructor() {
-        const token = localStorage.getItem("token");
-
-        if (token) {
-            const container = jwtDecode<{ user: UserModel }>(token);
-            const dbUser = container.user;
-            const action = userActions.loginUser(dbUser);
-            store.dispatch(action);
-        }
-    }
-
     public async register(user: UserModel) {
         await this.signIn(appConfig.registerUrl, user, userActions.loginUser)
     }

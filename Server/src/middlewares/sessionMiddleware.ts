@@ -1,6 +1,6 @@
 import { Response, NextFunction } from "express";
 import JsonUtil from "../utils/jsonUtil";
-const ACTIONS_LIMIT = process.env.ACTIONS_LIMIT || '100';
+import { appConfig } from "../utils/appConfig";
 
 export const trackRequestCount = async (
   req: any,
@@ -14,7 +14,7 @@ export const trackRequestCount = async (
   }
 
   try {
-    if (req.session.counter > parseInt(ACTIONS_LIMIT)) {
+    if (req.session.counter > appConfig.ACTIONS_LIMIT) {
       res.send("Request count limit reached. Please try again later.");
       return
     } else {

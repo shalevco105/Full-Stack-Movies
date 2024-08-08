@@ -18,6 +18,7 @@ export function MovieList(): JSX.Element {
     }, []);
 
     const resetMoviesData = async () => {
+        setMovies([])
         movieService.resetAllMovies()
             .then(dbMovies => {
                 console.log({ dbMovies })
@@ -27,6 +28,7 @@ export function MovieList(): JSX.Element {
     };
 
     const getMovies = async (force: boolean) => {
+        setMovies([])
         movieService.getAllMovies(force)
             .then(dbMovies => {
                 console.log({ dbMovies })

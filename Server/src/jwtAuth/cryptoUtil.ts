@@ -1,9 +1,9 @@
 import crypto from 'crypto';
+import { appConfig } from '../utils/appConfig';
 
 const algorithm = 'aes-256-cbc';
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "JWT_SECRET_KEY";
 
-const key = crypto.createHash('sha256').update(JWT_SECRET_KEY).digest();
+const key = crypto.createHash('sha256').update(appConfig.JWT_SECRET_KEY).digest();
 
 const generateIV = () => crypto.randomBytes(16);
 

@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-const MONGO_PATH = process.env.MONGO_PATH || "0.0.0.0:27017";
+import { appConfig } from "./utils/appConfig";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(`mongodb://${MONGO_PATH}/db`, {});
+    await mongoose.connect(`mongodb://${appConfig.MONGO_PATH}/db`, {});
     console.log("MongoDB connected");
   } catch (error) {
     console.error("MongoDB connection error:", error);
