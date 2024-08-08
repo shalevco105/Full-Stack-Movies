@@ -22,8 +22,8 @@ export function SideNavbar(): JSX.Element {
                 <ListItem component={NavLink} to="/about">
                     <ListItemText primary="About" />
                 </ListItem>
-                <ListItem component={NavLink} to="/contact-us">
-                    <ListItemText primary="Contact Us" />
+                <ListItem component={NavLink} to="/contact-me">
+                    <ListItemText primary="Contact Me" />
                 </ListItem>
             </List>
 

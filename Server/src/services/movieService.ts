@@ -55,6 +55,7 @@ export const deleteMovie = async (externalId: string): Promise<MovieModel | null
 export const resetMovies = async (newMovies: MovieModel[]): Promise<MovieModel[] | null> => {
   try {
     let moviesToReturn = null
+
     if (newMovies && resetMovies.length > 0) {
       await Movie.deleteMany({});
       moviesToReturn = await Movie.insertMany(newMovies);

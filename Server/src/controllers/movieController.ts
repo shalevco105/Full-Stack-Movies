@@ -127,11 +127,11 @@ export const deleteMovie = async (req: Request, res: Response): Promise<void> =>
 
 
 export const resetMovies = async (req: Request, res: Response): Promise<void> => {
-    const newMovies = await JsonUtil.readMoviesFromJson();
+    const jsonMovies = await JsonUtil.readMoviesFromJson();
 
     try {
-        await movieService.resetMovies(newMovies)
-        res.status(HTTP_STATUS.OK).send({ message: 'Movie collection has been reset successfully' });
+        const newAddedMovies = await movieService.resetMovies(jsonMovies)
+        res.status(HTTP_STATUS.OK).json(newAddedMovies);
     } catch (error) {
         res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).send({ message: 'Error reset movie collection', error });
     }

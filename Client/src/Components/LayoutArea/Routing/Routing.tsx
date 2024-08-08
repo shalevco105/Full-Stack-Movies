@@ -58,7 +58,7 @@ export function Routing(): JSX.Element {
                 } />
 
                 <Route path="/about" element={suspenseAbout} />
-                <Route path="/contact-us" element={<ContactMe />} />
+                <Route path="/contact-me" element={<ContactMe />} />
 
                 <Route path="/" element={<Navigate to="/home" />} />
 

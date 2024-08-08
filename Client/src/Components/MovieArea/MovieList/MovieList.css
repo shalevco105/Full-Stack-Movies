@@ -1,6 +1,6 @@
-.MovieList {
-}
+.MovieList {}
 
-.resetMovies { 
-    padding-top: 3vh;
+.moviesButton {
+    margin-right: 1vw !important;
+    margin-left: 1vw !important;
 }

@@ -6,48 +6,57 @@ import { MovieCard } from "../MovieCard/MovieCard";
 import { notify } from "../../../Utils/notify";
 import { useTitle } from "../../../Utils/UseTitle";
 import { PageTitle } from "../../LayoutArea/PageTitle/PageTitle";
-import axios from "axios";
 import { Button } from "@mui/material";
-import { appConfig } from "../../../Utils/AppConfig";
 
 export function MovieList(): JSX.Element {
 
     useTitle("Shalev's Movies");
-
     const [movies, setMovies] = useState<MovieModel[]>([]);
 
     useEffect(() => {
-        movieService.getAllMovies()
-            .then(dbMovies => setMovies(dbMovies))
-            .catch(err => notify.error(err));
+        getMovies(false)
     }, []);
 
     const resetMoviesData = async () => {
-        try {
-            const response = await axios.get(appConfig.moviesUrl + 'reset');
-            console.log('Response:', response.data);
-        } catch (error) {
-            console.error('Error making the request:', error);
-        }
+        movieService.resetAllMovies()
+            .then(dbMovies => {
+                console.log({ dbMovies })
+                setMovies(dbMovies)
+            })
+            .catch(err => notify.error(err));
+    };
+
+    const getMovies = async (force: boolean) => {
+        movieService.getAllMovies(force)
+            .then(dbMovies => {
+                console.log({ dbMovies })
+                setMovies(dbMovies)
+            })
+            .catch(err => notify.error(err));
     };
 
     return (
         <div className="MovieList">
-            {movies ?
+            <PageTitle title="Movie List" />
+
+            <div >
+                <Button className="moviesButton" variant="contained" color="primary" onClick={resetMoviesData}>
+                    Reset Movies Data
+                </Button>
+                <Button className="moviesButton" variant="contained" color="primary" onClick={() => getMovies(true)}>
+                    Refresh Movies List
+                </Button>
+            </div>
+
+            {movies && movies.length > 0 ?
                 <>
-                    <PageTitle title="Click to Edit or Delete" />
+                    <p>Click to Edit or Delete Movie</p>
                     {movies.map(movie => <MovieCard key={movie.externalId} movie={movie} />)}
                 </> :
                 <>
                     <PageTitle title="The movie list is empty. Click to reset the Movies data" />
                 </>
             }
-
-            <div className="resetMovies">
-                <Button variant="contained" color="primary" onClick={resetMoviesData}>
-                    Reset Movies Data
-                </Button>
-            </div>
         </div>
     );
 }

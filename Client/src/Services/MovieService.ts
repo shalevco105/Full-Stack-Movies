@@ -4,8 +4,16 @@ import { appConfig } from "../Utils/AppConfig";
 import { movieActions, store } from "../Redux/store";
 
 class MovieService {
-    public async getAllMovies() {
-        if (store.getState().movies.length > 0) return store.getState().movies;
+    public async resetAllMovies() {
+        const response = await axios.post<MovieModel[]>(`${appConfig.moviesUrl}reset/`);
+        const movies = response.data;
+        const action = movieActions.initMovies(movies);
+        store.dispatch(action);
+        return movies;
+    }
+    
+    public async getAllMovies(force: boolean) {
+        if (!force && store.getState().movies.length > 0) return store.getState().movies;
         const response = await axios.get<MovieModel[]>(`${appConfig.moviesUrl}data/`);
         const movies = response.data;
         const action = movieActions.initMovies(movies);
