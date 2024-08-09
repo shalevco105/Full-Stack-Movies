@@ -1,4 +1,4 @@
-const env = process.env.CONFIG_ENV || "development";
+const env = process.env.CONFIG_ENV || "deployment";
 const configData = require(`../../config/config.${env}.json`);
 
 class AppConfig {
