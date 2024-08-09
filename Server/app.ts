@@ -1,13 +1,11 @@
 import { appConfig } from './src/utils/appConfig';
-import dotenv from "dotenv";
-dotenv.config();
-
 import userRouter from "./src/routers/userRouter";
 import movieRouter from "./src/routers/movieRouter";
 import authRouter from "./src/routers/authRouter";
 import { trackRequestCount } from "./src/middlewares/sessionMiddleware";
 import session from "express-session";
 import express from "express";
+import serverless from "express";
 import connectDB from "./src/dbConnect";
 import cors from 'cors';
 
