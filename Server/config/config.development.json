@@ -1,9 +1,8 @@
 {
   "JWT_SECRET_KEY": "JWT_SECRET_KEY",
-  "USERS_URL": "https://jsonplaceholder.typicode.com/users",
   "MONGO_PATH": "0.0.0.0:27017",
   "ACTIONS_LIMIT": 1000,
   "PORT": 3030,
-  "CLIENT_URL": "http://localhost:3000",
+  "CLIENT_URL": "https://toy-story.co.il/",
   "ENV_TYPE": "development"
 }

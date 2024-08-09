@@ -1,9 +1,8 @@
-const env = process.env.config_env || "development";
+const env = process.env.config_env || "deployment";
 const configData = require(`../../config/config.${env}.json`);
 
 class AppConfig {
     public readonly JWT_SECRET_KEY: string = configData.JWT_SECRET_KEY;
-    public readonly USERS_URL: string = configData.USERS_URL;
     public readonly MONGO_PATH: string = configData.MONGO_PATH;
     public readonly ACTIONS_LIMIT: number = configData.ACTIONS_LIMIT;
     public readonly PORT: number = configData.PORT;

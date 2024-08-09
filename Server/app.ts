@@ -5,7 +5,7 @@ import authRouter from "./src/routers/authRouter";
 import { trackRequestCount } from "./src/middlewares/sessionMiddleware";
 import session from "express-session";
 import express from "express";
-import serverless from "express";
+import serverless from "serverless-http";
 import connectDB from "./src/dbConnect";
 import cors from 'cors';
 
@@ -37,7 +37,4 @@ app.use("/movie", movieRouter);
 
 connectDB();
 
-const PORT = appConfig.PORT;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports.handler = serverless(app)
