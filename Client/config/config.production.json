@@ -1,7 +1,7 @@
 {
-  "moviesUrl": "http://localhost:3030/movie/",
-  "registerUrl": "http://localhost:3030/auth/register/",
-  "loginUrl": "http://localhost:3030/auth/login/",
+  "moviesUrl": "https://8vxhcjtnfl.execute-api.eu-north-1.amazonaws.com/prod/movie/",
+  "registerUrl": "https://8vxhcjtnfl.execute-api.eu-north-1.amazonaws.com/prod/auth/register/",
+  "loginUrl": "https://8vxhcjtnfl.execute-api.eu-north-1.amazonaws.com/prod/auth/login/",
   "geminiUrl": "https://api.openai.com/v1/chat/completions",
   "geminiKey": "AIzaSyA96K4uCCFPnSUC7iu1Qx6pdLUcKWXRzlM",
   "config_env": "deployment"
